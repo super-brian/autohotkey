@@ -14,18 +14,19 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 <^Down::Send {PgDn}
 
 ; alt left/right
-<!Left::Send {LCtrl down}{Left}{LCtrl up}
-<!Right::Send {LCtrl down}{Right}{LCtrl up}
-<!+Left::Send {shift down}{LCtrl down}{Left}{LCtrl up}{shift up}
-<!+Right::Send {shift down}{LCtrl down}{Right}{LCtrl up}{shift up}
+<!Left::Send ^{Left}
+<!Right::Send ^{Right}
+<!+Left::Send ^+{Left}
+<!+Right::Send ^+{Right}
 
 ; ctrl left/right
 <^Left::Send {Home}
 <^Right::Send {End}
-<^+Left::Send {shift down}{Home}{shift up}
-<^+Right::Send {shift down}{End}{shift up}
+<^+Left::Send +{Home}
+<^+Right::Send +{End}
 
-; two blocks below is commented out for !Tab and !+Tab are not compatible with these.
+;;;;;;;;;;;;;;;
+;; two blocks below are commented out for !Tab and !+Tab are not compatible with these.
 
 ; Remap Ctrl-Tab to Alt-Tab
 ;^Tab::
@@ -41,6 +42,8 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ;Send {Shift up}
 ;Send {Alt up}
 ;return
+
+;;;;;;;;;;;;;;;;
 
 ; had to use caps lock key for ShiftAltTab.
 LCtrl & Tab::AltTab
