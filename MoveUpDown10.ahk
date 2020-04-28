@@ -3,57 +3,55 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-; Now, cmd > ctrl, ctrl > windows key.
+; Alt(mapped to windows) up/down to moves 9 lines
+<#Up::Send {Up}{Up}{Up}{Up}{Up}{Up}{Up}{Up}
+<#Down::Send {Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}
+<#+Up::Send +{Up}+{Up}+{Up}+{Up}+{Up}+{Up}+{Up}+{Up}+{Up}
+<#+Down::Send +{Down}+{Down}+{Down}+{Down}+{Down}+{Down}+{Down}+{Down}+{Down}
 
-; alt up/down
-<!Up::Send {Up}{Up}{Up}{Up}{Up}{Up}{Up}{Up}
-<!Down::Send {Down}{Down}{Down}{Down}{Down}{Down}{Down}{Down}
+; Alt(mapped to windows) left/right to moves by one word
+#Left::Send ^{Left}			
+#Right::Send ^{Right}
+#+Left::Send ^+{Left}
+#+Right::Send ^+{Right}
 
-; ctrl up/down
-<^Up::Send {PgUp}
-<^Down::Send {PgDn}
+; move windows like on mac
+#<!Left::Send #{Left}
+#<!Right::Send #{Right}
+#<!Up::Send #{Up}
+#<!Down::Send #{Down}
+^#<!Left::Send #+{Left}
+^#<!Right::Send #+{Right}
 
-; alt left/right
-<!Left::Send ^{Left}
-<!Right::Send ^{Right}
-<!+Left::Send ^+{Left}
-<!+Right::Send ^+{Right}
+; CMD(mapped to alt) up/down to PageUp/PageDown
+<!Up::Send {PgUp}
+<!Down::Send {PgDn}
+<!+Up::Send +{PgUp}
+<!+Down::Send +{PgDn}
 
-; ctrl left/right
-<^Left::Send {Home}
-<^Right::Send {End}
-<^+Left::Send +{Home}
-<^+Right::Send +{End}
+; CMD(mapped to alt) left/right to Home/End
+<!Left::Send {Home}
+<!Right::Send {End}
+<!+Left::Send +{Home}
+<!+Right::Send +{End}
 
-;;;;;;;;;;;;;;;
-;; two blocks below are commented out for !Tab and !+Tab are not compatible with these.
+; some more for visual studio.
+<!-::Send ^{-}
+<!+-::Send ^+{-}
+<!Space::Send ^{j}
 
-; Remap Ctrl-Tab to Alt-Tab
-;^Tab::
-;Send {Alt down}{Tab}
-;Keywait Control
-;Send {Alt up}
-;return
-
-; Remap Ctrl-Shift-Tab to Alt-Shift-Tab
-;^+Tab::
-;Send {Alt down}{Shift down}{Tab}
-;Keywait Control
-;Send {Shift up}
-;Send {Alt up}
-;return
-
-;;;;;;;;;;;;;;;;
-
-; had to use caps lock key for ShiftAltTab.
-LCtrl & Tab::AltTab
-LCtrl & CapsLock::ShiftAltTab
-
-!Tab:: Send ^{Tab}
-!+Tab:: Send ^+{Tab}
-
-;<!Tab::
-;Send {Control down}{Tab}
-;Keywait Alt
-;Send {Control up}
-;return
+; CMD(mapped to alt): copy/paste, close, save, new tab, quit, find, select all, undo, redo, reload, cut, open, new
+<!c::Send {LCtrl down}{c}{LCtrl up}
+<!v::Send {LCtrl down}{v}{LCtrl up}
+<!w::Send {LCtrl down}{w}{LCtrl up}
+<!s::Send {LCtrl down}{s}{LCtrl up}
+<!t::Send {LCtrl down}{t}{LCtrl up}
+<!q::Send {LAlt down}{F4}{LAlt up}
+<!f::Send {LCtrl down}{f}{LCtrl up}
+<!a::Send {LCtrl down}{a}{LCtrl up}
+<!z::Send {LCtrl down}{z}{LCtrl up}
+<!+z::Send {LCtrl down}{LShift down}{z}{LShift up}{LCtrl up}
+<!r::Send {LCtrl down}{r}{LCtrl up}
+<!x::Send {LCtrl down}{x}{LCtrl up}
+<!o::Send {LCtrl down}{o}{LCtrl up}
+<!n::Send {LCtrl down}{n}{LCtrl up}
